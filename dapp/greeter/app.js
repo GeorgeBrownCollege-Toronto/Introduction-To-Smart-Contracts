@@ -1,5 +1,5 @@
 var url = "http://127.0.0.1:8545";
-var contractAddress = "deployed-contract-address-here";
+var contractAddress = "0xa3f51E72da0DEe4C448C48F68125Db63B842458a";
 
 var abi = [
   {
@@ -55,10 +55,11 @@ var abi = [
   }
 ];
 var privateKey =
-  "paste-private-key-here";
+  "0x229e74393419ab8c4e074764e8fd5fd59687a94bd692fca4d9ede530f96ecb6f";
 
 var submitSet = document.querySelector("form");
 var setNameTerm = document.querySelector(".setName");
+var setEtherValueTerm = document.querySelector(".setEtherValue");
 
 var helloBtn = document.querySelector(".hello");
 var helloResult = document.querySelector(".helloRes");
@@ -74,7 +75,8 @@ helloBtn.addEventListener("click", helloFn);
 function submitSetFn(e) {
   e.preventDefault();
   var str = setNameTerm.value;
-  contractWithSigner.set(str).then(async tx => {
+  var ethValue = setEtherValueTerm.value;
+  contractWithSigner.set(str,{value:ethValue}).then(async tx => {
     await tx.wait();
     console.log("The set function is finished calling...");
   });
